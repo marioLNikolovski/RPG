@@ -85,8 +85,19 @@ namespace RPG.Menus
             prevCol = charCol;
             charCol = charCol + colMovement;
 
-            matrix[charRow, charCol] = character.Symbol.ToCharArray()[0];
-            matrix[prevRow, prevCol] = '▒';
+            if (charRow > 10 || charRow < 0
+               || charCol > 10 || charCol < 0)
+            {
+                charRow = prevRow;
+                charCol = prevCol;
+            }
+            else 
+            {
+                matrix[charRow, charCol] = character.Symbol.ToCharArray()[0];
+                matrix[prevRow, prevCol] = '▒';
+
+            }
+           
          
 
         }
@@ -127,6 +138,7 @@ namespace RPG.Menus
         }
         public char[,] PrintMatrix()
         {
+           
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
