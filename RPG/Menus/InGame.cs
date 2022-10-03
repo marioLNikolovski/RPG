@@ -12,6 +12,10 @@ namespace RPG.Menus
         private IRPGRepository _repo;
         private char[,] matrix;
         private bool hasStarted = true;
+        private int charRow = 1;
+        private int charCol = 1;
+        private int prevRow = 1;
+        private int prevCol = 1;
         public InGame()
         {
             _keyCommands = new KeyCommands();
@@ -67,11 +71,7 @@ namespace RPG.Menus
             var inputKey = Console.ReadKey(true).Key;
             
             
-            int charRow = 1;
-            int charCol = 1;
-
-            int prevRow = 1;
-            int prevCol = 1;
+          
             
 
             var movements = _keyCommands.Move[inputKey];
@@ -85,7 +85,7 @@ namespace RPG.Menus
             prevCol = charCol;
             charCol = charCol + colMovement;
 
-            matrix[charRow, prevCol] = character.Symbol.ToCharArray()[0];
+            matrix[charRow, charCol] = character.Symbol.ToCharArray()[0];
             matrix[prevRow, prevCol] = '▒';
          
 
